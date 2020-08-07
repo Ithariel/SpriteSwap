@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://SplitContainer.gd" type="Script" id=1]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SplitContainer" type="VSplitContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+dragger_visibility = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="SplitContainer"]
+margin_right = 477.0
+margin_bottom = 34.0
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SplitContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 477.0
+margin_bottom = 34.0
+custom_constants/separation = 10
+
+[node name="ButtonOpenFile" type="Button" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_right = 47.0
+margin_bottom = 24.0
+text = "Open"
+
+[node name="ButtonSaveFile" type="Button" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_left = 57.0
+margin_right = 98.0
+margin_bottom = 24.0
+text = "Save"
+
+[node name="LabelWidth" type="Label" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_left = 108.0
+margin_top = 5.0
+margin_right = 181.0
+margin_bottom = 19.0
+text = "Tile Width: "
+
+[node name="LineEditWidth" type="LineEdit" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_left = 191.0
+margin_right = 249.0
+margin_bottom = 24.0
+
+[node name="LabelHeight" type="Label" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_left = 259.0
+margin_top = 5.0
+margin_right = 332.0
+margin_bottom = 19.0
+text = "Tile Height:"
+
+[node name="LineEditHeight" type="LineEdit" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_left = 342.0
+margin_right = 400.0
+margin_bottom = 24.0
+
+[node name="ButtonCredits" type="Button" parent="SplitContainer/MarginContainer/HBoxContainer"]
+margin_left = 410.0
+margin_right = 467.0
+margin_bottom = 24.0
+text = "Credits"
+
+[node name="GridContainer" type="GridContainer" parent="SplitContainer"]
+margin_top = 46.0
+margin_right = 477.0
+margin_bottom = 46.0
+
+[node name="FileDialogOpenFile" type="FileDialog" parent="SplitContainer"]
+margin_right = 600.0
+margin_bottom = 500.0
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.png" )
+current_dir = "/home/z4rp/Godot/SpriteSwap"
+current_file = "default_env.tres"
+current_path = "/home/z4rp/Godot/SpriteSwap/default_env.tres"
+
+[node name="FileDialogSaveFile" type="FileDialog" parent="SplitContainer"]
+margin_right = 600.0
+margin_bottom = 500.0
+access = 2
+filters = PoolStringArray( "*.png" )
+current_dir = "/home/z4rp/Godot/SpriteSwap"
+current_file = "default_env.tres"
+current_path = "/home/z4rp/Godot/SpriteSwap/default_env.tres"
+
+[node name="AcceptDialogCredits" type="AcceptDialog" parent="SplitContainer"]
+margin_right = 600.0
+margin_bottom = 500.0
+window_title = "License"
+dialog_text = "This app uses Godot Engine, available under the following license:
+
+Copyright (c) 2007-2020 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2020 Godot Engine contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Portions of this software are copyright © 2020 The FreeType Project (www.freetype.org). All rights reserved.
+"
+dialog_autowrap = true
+[connection signal="pressed" from="SplitContainer/MarginContainer/HBoxContainer/ButtonOpenFile" to="SplitContainer" method="_on_ButtonOpenFile_pressed"]
+[connection signal="pressed" from="SplitContainer/MarginContainer/HBoxContainer/ButtonSaveFile" to="SplitContainer" method="_on_ButtonSaveFile_pressed"]
+[connection signal="text_changed" from="SplitContainer/MarginContainer/HBoxContainer/LineEditWidth" to="SplitContainer" method="_on_LineEditWidth_text_changed"]
+[connection signal="text_changed" from="SplitContainer/MarginContainer/HBoxContainer/LineEditHeight" to="SplitContainer" method="_on_LineEditHeight_text_changed"]
+[connection signal="pressed" from="SplitContainer/MarginContainer/HBoxContainer/ButtonCredits" to="SplitContainer" method="_on_ButtonCredits_pressed"]
+[connection signal="file_selected" from="SplitContainer/FileDialogOpenFile" to="SplitContainer" method="_on_FileDialogOpenFile_file_selected"]
+[connection signal="file_selected" from="SplitContainer/FileDialogSaveFile" to="SplitContainer" method="_on_FileDialogSaveFile_file_selected"]
